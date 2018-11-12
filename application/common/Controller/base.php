@@ -1,5 +1,5 @@
 <?php
-/**
+/*
  * Created by Joe.
  * base.php
  * 公共控制器，公共方法的调用

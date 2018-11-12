@@ -2,7 +2,7 @@
 /**
  * Created by Joe.
  * Send.php
- * 发送邮件
+ * 邮件控制器
  * Create on: 2018/8/30 20:06
  */
 

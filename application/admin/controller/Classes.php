@@ -2,7 +2,7 @@
 /**
  * Created by Joe.
  * Classes.php
- * 文件描述
+ * 类别管理控制器
  * Create on: 2018/8/16 19:54
  */
 

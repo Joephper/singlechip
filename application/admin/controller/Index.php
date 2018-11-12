@@ -5,7 +5,7 @@ use app\admin\common\Controller\Base;
 /**
  * Created by Joe.
  * Index.php
- * 后台首页
+ * 后台
  * Create on: 2018/7/23 10:24
  */
 class Index extends Base

@@ -2,7 +2,7 @@
 /**
  * Created by Joe.
  * Active.php
- * 文件描述
+ * 邮箱激活
  * Create on: 2018/8/27 19:08
  */
 

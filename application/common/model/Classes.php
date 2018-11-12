@@ -1,5 +1,5 @@
 <?php
-/**
+/*
  * Created by Joe.
  * Classes.php
  * 资源类别表class模型

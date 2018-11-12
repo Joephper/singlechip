@@ -2,7 +2,7 @@
 /**
  * Created by Joe.
  * Cate.php
- * 文件描述
+ * 章节管理控制器
  * Create on: 2018/8/8 16:34
  */
 

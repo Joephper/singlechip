@@ -1,5 +1,5 @@
 <?php
-/**
+/*
  * Created by Joe.
  * Active.php
  * 邮箱激活

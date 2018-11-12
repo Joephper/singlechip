@@ -1,0 +1,116 @@
+{layout name="public:layout" /}
+
+<div class="page-content">
+    <!-- Page Breadcrumb -->
+    <div class="page-breadcrumbs">
+        <ul class="breadcrumb">
+            <li>
+                <a href="{:url('site/index')}" style="color: #33414E;text-decoration: none">系统</a>
+            </li>
+            <li class="active">学习教程管理</li>
+            <li>
+                <a href="{:url('video/videolist')}" style="color: #33414E;text-decoration: none">教学视频管理</a>
+            </li>
+            <li class="active">编辑视频</li>
+        </ul>
+    </div>
+    <!-- /Page Breadcrumb -->
+    <!-- Page Body -->
+    <div class="page-body">
+        <div class="row" style="background-color: white;margin:-10px 5px 0px 5px;box-shadow: 3px 3px 2px #888888;">
+            <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
+                <div class="flip-scroll container">
+                    <div class="row" style="margin-top: 20px;">
+                        <h4 class="text-right text-success">编辑视频</h4>
+                        <hr style="height:1px;border:none;border-top:1px solid #555555;"/>
+                    </div>
+                    <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3"></div>
+                    <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6">
+                        <form class="form-horizontal" action="{:url('video/saveVideo')}" method="post"
+                              enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">视频标题</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="title" id="title" value="{$videoInfo.title}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">章节名称</label>
+                                <div class="col-sm-10">
+                                    <select name="cid" id="" class="form-control">
+                                        {volist name="data" id="cate"}
+                                        <option value="{$cate.id}"
+                                                {if $cate.id == $videoInfo.cid }selected='selected'
+                                                {/if}
+                                        ><?php echo str_repeat('---',$cate['level']) ?>{$cate.name}</option>
+                                        {/volist}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">视频</label>
+                                <div class="col-sm-10">
+                                    <video width="200" height="100" controls>
+                                        <source src="/videos/{$videoInfo.path}">
+                                    </video>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">视频路径</label>
+                                <div class="col-sm-10">
+                                    <input type="file" name="path" class="form-control" id="path" placeholder="视频路径">
+                                    <p>（仅允许添加后缀名为avi,wmv,mpeg,mp4,mov的文件）</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">视频截图</label>
+                                <div class="col-sm-10">
+                                    <img src="/images/{$videoInfo.image}" width="80" height="60"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">视频截图</label>
+                                <div class="col-sm-10">
+                                    <input type="file" name="image" class="form-control" id="image" placeholder="图片路径">
+                                    <p>（仅允许添加后缀名为jpg,jpeg,png的文件）</p>
+                                </div>
+                            </div>
+                            <input type="hidden" name="id" value="{$videoInfo.id}">
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-info" onclick="Check()"><i
+                                            class="glyphicon glyphicon-ok"></i>保存
+                                    </button>
+                                    <a href="{:url('video/videolist')}"
+                                       class="btn btn-danger btn-sm shiny">
+                                        <i class="glyphicon glyphicon-remove"></i> 取消
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function Check() {
+        if (document.getElementById("title").value == "") {
+            alert('视频标题不能为空!');
+            return false;
+        }
+        if (document.getElementById("path").value == "") {
+            alert('视频路径不能为空!');
+            return false;
+        }
+        if (document.getElementById("image").value == "") {
+            alert('图片路径不能为空!');
+            return false;
+        }
+        return true;
+    }
+
+</script>

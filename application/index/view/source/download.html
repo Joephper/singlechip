@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>资源下载</title>
+
+
+    <!-- Bootstrap Core CSS -->
+    {load href="/static/css/bootstrap.css" /}
+
+    <!-- Custom CSS -->
+    {load href="/mine/css/font-awesome.min.css" /}
+    {load href="/mine/css/ionicons.min.css" /}
+    {load href="/mine/css/main.css" /}
+    {load href="/mine/css/style.css" /}
+    {load href="/mine/css/responsive.css" /}
+    {load href="/static/css/index.css" /}
+
+    <!-- JavaScripts -->
+    {load href="/mine/js/modernizr.js" /}
+    {load href="/static/js/jquery-3.3.1.min.js" /}
+    {load href="/static/js/bootstrap.js" /}
+    <!-- Online Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Dosis|Libre+Baskerville|Open+Sans" rel="stylesheet">
+
+</head>
+<body>
+<div id="wrap">
+
+    {include file="public::nav" /}
+    <div class="container">
+        <div class="row">
+            <div class="cate">
+                <ul class="cate">
+                    <li><a href="{:url('Source/download')}">全部</a></li>
+                    {volist name="classList" id="class"}
+
+                    <ul>
+                        <li role="presentation"><a href="{:url('Source/download',['id'=>$class.id])}">{$class.name}</a>
+                        </li>
+                    </ul>
+                    {/volist}
+                </ul>
+            </div>
+
+        </div>
+
+        {volist name="sourcelist" id="list"}
+        <div class="max-box">
+            <div class="image-box"><img src="/images/{$list.image}"></div>
+            <div class="text-box">
+                <div class="text-left-box">
+                    <p>{$list.name}</p>
+                    <p>{$list.description}</p>
+                </div>
+                <div class="text-right-box">
+                    <a href="{:url('source/sourcedownload',['id'=>$list.id])}"
+                       class="btn btn-primary btn-sm shiny">
+                        <i class="glyphicon glyphicon-save"></i> 下载
+                    </a>
+                </div>
+            </div>
+            <hr/>
+        </div>
+        {/volist}
+        <div class="text-center">{$sourcelist|raw}</div>
+    </div>
+    {include file="public::footer" /}
+</div>
+{load href="/mine/js/own-menu.js" /}
+{load href="/mine/js/main.js" /}
+</body>
+</html>

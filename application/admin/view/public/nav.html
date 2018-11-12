@@ -1,0 +1,44 @@
+<nav>
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{:url('index/index')}"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right">
+            {if $Think.session.user_id && $Think.session.active==1}
+            <li><a href="{:url('/')}" style="color: white">返回前台</a></li>
+
+            <li class="dropdown">
+                <ul class="nav navbar-nav " >
+                <li><a href="#" style="color: white">{$Think.session.user_name}<span class="caret"></span></a></li>
+                    </ul>
+                <ul class="dropdown-menu">
+                    <li><a href="{:url('user/adminEdit',['id'=>$Think.session.admin_id])}"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;&nbsp;个人中心</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="{:url('User/logout')}"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;&nbsp;注销</a></li>
+                </ul>
+            </li>
+            {/if}
+        </ul>
+    </div><!-- /.container-fluid -->
+</nav>
+<script>
+    $(function () {
+        $(".dropdown").mouseover(function () {
+            $(this).addClass("open");
+        });
+
+        $(".dropdown").mouseleave(function () {
+            $(this).removeClass("open");
+        })
+
+    })
+</script>
+

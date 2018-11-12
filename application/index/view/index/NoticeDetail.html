@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>公告详情</title>
+    {load href="/static/css/bootstrap.css" /}
+    {load href="/static/js/jquery-3.3.1.min.js" /}
+    {load href="/static/js/bootstrap.js" /}
+</head>
+<body>
+<div class="container">
+    <div class="span" style="background-color: green;height: 150px;"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    {include file="public::nav" /}
+
+                </div>
+            </nav>
+        </div>
+        <div class="col-md-8" style="height: 700px;">
+            <div>{$notice.title}</div>
+            <div>{$notice.create_time} &nbsp;&nbsp;&nbsp;&nbsp;阅读量： {$notice.pv}</div>
+            <div>{:htmlspecialchars_decode($notice.content)}</div>
+        </div>
+        <div class="col-md-4" style="background-color: #9d9d9d;height: 700px;">2</div>
+
+        {include file="public::footer" /}
+    </div>
+</div>
+</body>
+</html>

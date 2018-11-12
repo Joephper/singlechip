@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>单片机教学网</title>
+
+
+    <!-- Bootstrap Core CSS -->
+    {load href="/static/css/bootstrap.css" /}
+
+    <!-- Custom CSS -->
+    {load href="/mine/css/font-awesome.min.css" /}
+    {load href="/mine/css/ionicons.min.css" /}
+    {load href="/mine/css/main.css" /}
+    {load href="/mine/css/style.css" /}
+    {load href="/mine/css/responsive.css" /}
+
+    <!-- JavaScripts -->
+    {load href="/mine/js/modernizr.js" /}
+    {load href="/static/js/jquery-3.3.1.min.js" /}
+    {load href="/static/js/bootstrap.js" /}
+    {load href="/mine/js/own-menu.js" /}
+    {load href="/mine/js/main.js" /}
+    {load href="/mine/js/Choices.js" /}
+    <!-- Online Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Dosis|Libre+Baskerville|Open+Sans" rel="stylesheet">
+</head>
+<body>
+<!-- Wrap -->
+<div id="wrap">
+    {include file="public::nav" /}
+    <!-- Banner -->
+    <div class="Choices">
+        <div class="Choices_text">
+            <div class="Choices_head">学习单片机四要点</div>
+            <div class="Choices_content">
+                <div class="Choices_banner">
+                    <ul>
+                        <li>
+                            <div class="Choices_left"><img
+                                    src="http://localhost:8080/dashboard/EMS_correct/public/mine/image/Choices1.png"
+                                    width="100%"></div>
+                            <div class="Choices_right">
+                                <h1>理解</h1>
+                                <h2></h2>
+                                <p>学会C语言的常用语法，理解51单片机开发平台软件keil的操作，理解单片机的原理特性，能读懂按键，数码管，跑马灯，串口的简单程序，能熟悉几个常用的外围芯片驱动。</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="Choices_left"><img
+                                    src="http://localhost:8080/dashboard/EMS_correct/public/mine/image/Choices2.png"
+                                    width="100%"></div>
+                            <div class="Choices_right">
+                                <h1>借鉴</h1>
+                                <h2></h2>
+                                <p>当开始接触一些小项目时，往往不知道从何处入手，这是因为缺少程序的框架思路。所以需要通过与他人进行探讨交流以及学习和借鉴他人的分享经验来摸索开发项目的门径。</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="Choices_left"><img
+                                    src="http://localhost:8080/dashboard/EMS_correct/public/mine/image/Choices3.png"
+                                    width="100%"></div>
+                            <div class="Choices_right">
+                                <h1>掌握</h1>
+                                <h2></h2>
+                                <p>在做项目时，除了写单片机的软件，还不可避免的要跟整个电路的硬件打交道，所以掌握一些常用的硬件电路知识就显得尤其重要。</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="Choices_left"><img
+                                    src="http://localhost:8080/dashboard/EMS_correct/public/mine/image/Choices4.jpg"
+                                    width="100%"></div>
+                            <div class="Choices_right">
+                                <h1>实践</h1>
+                                <h2></h2>
+                                <p>唯有通过大量的实践才能更牢固地掌握知识，积累开发项目的经验，发现自身知识部分的不足，从而更深入地研究该领域所需知识。</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="news-part">
+        <!-- BOXES -->
+        <section class="boxes-intro">
+            <div class="container">
+                <ul>
+                    <li>
+                        <div class="position-center-center"><i class="fa fa-unlock"></i>
+                            <h5>理解</h5>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="position-center-center"><i class="fa fa-key"></i>
+                            <h5>借鉴</h5>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="position-center-center"><i class="fa fa-lock"></i>
+                            <h5>掌握</h5>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="position-center-center"><i class="fa fa-laptop"></i>
+                            <h5>实践</h5>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Content -->
+        <div class="power-hosting padding-top-50 padding-bottom-80">
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                <div class="news-head text-center">
+                    <h2>新闻资讯</h2>
+                </div>
+            </div>
+            <div id="content">
+                <div class="row">
+                    {volist name="newsList" id="news" }
+                    <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
+                        <div class="news-right">
+                            <div class="news-content">
+                                <div class="title-image">
+                                    <img style="background: url('/static/image/image.jpg') no-repeat;
+                                    background-size: cover;"/>
+                                </div>
+                                <div class="news-words">
+                                    <div class="news-box">
+                                        <div class="news-title">
+                                            <h5><a href="{:url('index/NewsDetail',['id'=>$news.id])}">{$news.title}</a>
+                                            </h5>
+                                        </div>
+                                        <div class="news-co">
+                                            <a href="{:url('index/NewsDetail',['id'=>$news.id])}">{$news.content|getNewsContent}</a>
+                                        </div>
+                                        <div align="left" style="padding-top: 60px;color: #AF00F5"><i
+                                                class="fa fa-dot-circle-o"></i>&nbsp;{$news.create_time}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {/volist}
+                </div>
+            </div>
+        </div>
+        <div class="text-center padding-bottom-200">
+            <a href="#" class="albtn">
+                更多新闻资讯
+            </a>
+        </div>
+    </div>
+    <div class="row" style="background-color: #E7EAEA;">
+
+        <div class="notice-source">
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1" >
+                <div class="notice-title">
+                    <div class="notice-title-word">
+                        <p>置顶通告</p>
+                        <div class="notice-title-a">
+                            <a href="#">更多</a>
+                            <i class="glyphicon glyphicon-chevron-down"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                <div class="notice-page">
+                    {volist name="NoticeList" id="notice" }
+                    <div class="notice-content">
+                        <div class="row">
+                            <div class="title-word">
+                                <a href="{:url('index/NoticeDetail',['nid'=>$notice.nid])}">{$notice.title}</a>
+                            </div>
+                            <div>
+                                <a href="{:url('index/NoticeDetail',['nid'=>$notice.nid])}">{$notice.content|getNoticeContent}</a>
+                            </div>
+
+                        </div>
+                    </div>
+                    {/volist}
+                </div>
+            </div>
+            <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1"></div>
+            <div class="col-md-5 col-lg-5 col-sm-5 col-xs-5">
+                <div class="source-page"></div>
+            </div>
+
+
+        </div>
+    </div>
+    <!-- FOOTER -->
+    {include file="public::footer" /}
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+{layout name="public:layout" /}
+
+<div class="page-content">
+    <!-- Page Breadcrumb -->
+    <div class="page-breadcrumbs">
+        <ul class="breadcrumb">
+            <li>
+                <a href="{:url('site/index')}" style="color: #33414E;text-decoration: none">系统</a>
+            </li>
+            <li>
+                <a href="{:url('news/newsList')}" style="color: #33414E;text-decoration: none">新闻管理</a>
+            </li>
+            <li class="active">发布新闻</li>
+        </ul>
+    </div>
+    <!-- /Page Breadcrumb -->
+    <!-- Page Body -->
+    <div class="page-body">
+        <div class="row" style="background-color: white;margin:-10px 5px 0px 5px;box-shadow: 3px 3px 2px #888888;">
+            <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
+                <div class="flip-scroll container">
+                    <div class="row" style="margin-top: 20px;">
+                        <h4 class="text-right text-success">编辑新闻</h4>
+                        <hr style="height:1px;border:none;border-top:1px solid #555555;"/>
+                    </div>
+                    <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2"></div>
+                    <div class="col-lg-8 col-sm-8 col-xs-8 col-md-8">
+                        <form class="form-horizontal" action="{:url('news/saveNews')}" method="post">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">新闻标题</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="title" value="{$newsInfo.title}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">新闻内容</label>
+                                <div class="col-sm-10">
+                                    <textarea id="editor" name="content" type="text/plain"
+                                              style="height:300px;">{$newsInfo.content}</textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">新闻状态</label>
+                                <div class="col-sm-10">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="status" value="1"
+                                               {eq name="newsInfo.status" value="1" }
+                                               checked="checked"
+                                               {/eq}
+                                        >显示
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="status" value="0"
+                                               {eq name="newsInfo.status" value="0" }
+                                               checked="checked"
+                                               {/eq}
+                                        >隐藏
+                                    </label>
+                                </div>
+                            </div>
+                            <input type="hidden" name="id" value="{$newsInfo.id}">
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-info"><i class="glyphicon glyphicon-ok"></i>保存</button>
+                                    <a href="{:url('news/newsList')}"
+                                       class="btn btn-danger btn-sm shiny">
+                                        <i class="glyphicon glyphicon-remove"></i> 取消
+                                    </a>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function(){
+        UE.getEditor('editor');
+    });
+</script>

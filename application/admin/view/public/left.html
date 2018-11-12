@@ -1,0 +1,144 @@
+<div class="panel-group" id="accordion">
+    <div class="panel-heading panel">
+        <ul class="nav">
+            <li>
+
+                <a href="{:url('site/index')}" class="side-nav-item item-title">
+                    <span class="glyphicon glyphicon-home"></span>
+                    系统
+                    <span class="glyphicon glyphicon-chevron-right" style="float: right;"></span>
+                </a>
+            </li>
+        </ul>
+        <div class="item-body collapse" id='index'>
+        </div>
+    </div>
+    <div class="panel-heading panel">
+        <ul class="nav">
+            <li>
+                <a  href="{:url('user/userList')}" class="side-nav-item item-title">
+                    <span class="glyphicon glyphicon-user"></span>
+                    用户管理
+                    <span class="glyphicon glyphicon-chevron-right" style="float: right;"></span>
+                </a>
+            </li>
+        </ul>
+        <div class="item-body collapse" >
+        </div>
+    </div>
+    <div class="panel-heading panel">
+        <ul class="nav">
+            <li>
+                <a  href="{:url('teacher/teacherList')}" class="side-nav-item item-title">
+                    <span class="glyphicon glyphicon-user"></span>
+                    教师简介管理
+                    <span class="glyphicon glyphicon-chevron-right" style="float: right;"></span>
+                </a>
+            </li>
+        </ul>
+        <div class="item-body collapse" >
+        </div>
+    </div>
+    <div class="panel-heading panel">
+        <ul class="nav">
+            <li>
+                <a  href="{:url('notice/noticeList')}" class="side-nav-item item-title">
+                    <span class="glyphicon glyphicon-bullhorn"></span>
+                    公告管理
+                    <span class="glyphicon glyphicon-chevron-right" style="float: right;"></span>
+                </a>
+            </li>
+        </ul>
+        <div class="item-body collapse" >
+        </div>
+    </div>
+    <div class="panel-heading panel">
+        <ul class="nav">
+            <li>
+                <a  href="{:url('news/newsList')}" class="side-nav-item item-title">
+                    <span class="glyphicon glyphicon-tag"></span>
+                    新闻管理
+                    <span class="glyphicon glyphicon-chevron-right" style="float: right;"></span>
+                </a>
+            </li>
+        </ul>
+        <div class="item-body collapse" >
+        </div>
+    </div>
+    <div class="panel-heading panel">
+        <ul class="nav">
+            <li>
+                <a  href="{:url('cate/lst')}" class="side-nav-item item-title">
+                    <span class="glyphicon glyphicon-list-alt"></span>
+                    章节管理
+                    <span class="glyphicon glyphicon-chevron-right" style="float: right;"></span>
+                </a>
+            </li>
+        </ul>
+        <div class="item-body collapse" >
+        </div>
+    </div>
+    <div class="panel-heading panel">
+        <ul class="nav">
+            <li>
+                <a  href="{:url('classes/classList')}" class="side-nav-item item-title">
+                    <span class="glyphicon glyphicon-tag"></span>
+                    类别管理
+                    <span class="glyphicon glyphicon-chevron-right" style="float: right;"></span>
+                </a>
+            </li>
+        </ul>
+        <div class="item-body collapse" >
+        </div>
+    </div>
+    <div class="panel-heading panel">
+        <ul class="nav" id="click1">
+            <li>
+                <a data-toggle="collapse" data-parent="#accordion" href="#item-cangku1" id="headcangku1"
+                   class="side-nav-item item-title">
+                    <span class="glyphicon glyphicon-home"></span>
+                    学习教程管理<span class="glyphicon glyphicon-chevron-down" style="float: right;display: none;" id="div1"></span>
+                    <span class="glyphicon glyphicon-chevron-right" style="float: right;" id="show1"></span>
+                </a>
+            </li>
+        </ul>
+        <div id="item-cangku1" class="panel-collapse collapse">
+            <div class="item-body">
+                <ul class="nav list-unstyled">
+                    <li class="item-second"><a href="{:url('video/videolist')}"><span class="glyphicon glyphicon-film"></span>&nbsp;教学视频管理</a></li>
+                    <li class="item-second"><a href="{:url('textbook/textlist')}"><span class="glyphicon glyphicon-book"></span>&nbsp;电子教材管理</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="panel-heading panel">
+        <ul class="nav">
+            <li>
+                <a  href="{:url('source/sourceList')}" class="side-nav-item item-title">
+                    <span class="glyphicon glyphicon-tag"></span>
+                    资源管理
+                    <span class="glyphicon glyphicon-chevron-right" style="float: right;"></span>
+                </a>
+            </li>
+        </ul>
+        <div class="item-body collapse" >
+        </div>
+    </div>
+
+</div>
+<script>
+    $(document).ready(function(){
+        $("#click1").click(function(){
+            $("#div1").toggle();
+            $("#show1").toggle();
+
+        });
+        $("#click2").click(function(){
+            $("#div2").toggle();
+            $("#show2").toggle();
+
+        });
+    });
+</script>
+
+

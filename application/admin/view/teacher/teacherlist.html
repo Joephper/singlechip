@@ -1,0 +1,126 @@
+{layout name="public:layout" /}
+
+<div class="page-content">
+    <!-- Page Breadcrumb -->
+    <div class="page-breadcrumbs">
+        <ul class="breadcrumb">
+            <li>
+                <a href="{:url('site/index')}" style="color: #33414E;text-decoration: none">系统</a>
+            </li>
+            <li class="active">教师简介管理</li>
+
+        </ul>
+    </div>
+    <!-- /Page Breadcrumb -->
+    <!-- Page Body -->
+    <div class="page-body">
+        <div class="row" style="background-color: white;margin:-10px 5px 0px 5px;box-shadow: 3px 3px 2px #888888;">
+            <div class="col-lg-12 col-sm-12 col-xs-12">
+
+                <div class="row container" style="margin-top: 20px;">
+                    <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6">
+                        <h4><a class="text-left text-success" href="{:url('teacher/teacherlist')}"
+                               style="text-decoration: none">教师简介列表</a></h4>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6">
+                    </div>
+                </div>
+
+                <form action="{:url('teacher/delall')}" method="post">
+                    <div class="widget">
+                        <div class="widget-body">
+                            <div class="flip-scroll container">
+
+                                <div class="row">
+                                    <hr style="height:1px;border:none;border-top:1px solid #555555;"/>
+                                    <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6">
+                                        <div id="toolbar-btn" class="btn-group pull-left" style="padding-bottom:10px;">
+                                            <button id="btn_add" onclick="createFunction()" type="button"
+                                                    class="btn btn-primary btn-space">
+                                            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"
+                                                  class="btn-icon-space"></span>
+                                                添加
+                                            </button>
+
+                                            <button id="btn_delete" onclick="return deleteall()" type="submit"
+                                                    class="btn btn-danger btn-space">
+                                            <span class="glyphicon glyphicon-trash" aria-hidden="true"
+                                                  class="btn-icon-space"></span>
+                                                删除
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6"></div>
+                                </div>
+
+                                <div class="row">
+                                    <table class="table table-bordered table-hover table-responsive">
+                                        <thead style="background-color: #F0F0F0">
+                                        <tr>
+                                            <th class="text-center"><input type="checkbox" name="checkall" id="checkall"
+                                                                           onclick="checkfk()">全选
+                                            </th>
+                                            <th class="text-center" width='10%'>ID</th>
+                                            <th class="text-center">教师姓名</th>
+                                            <th class="text-center">文件图片</th>
+                                            <th class="text-center">创建时间</th>
+                                            <th class="text-center" width='25%'>操作</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {volist name="teacherList" id="teacher" empty="$empty"}
+                                        <tr>
+                                            <td align="center" style="line-height: 60px"><input type="checkbox" name="id[]" id="checkbox"
+                                                                                                value="{$teacher.id}"></td>
+                                            <td align="center" style="line-height: 60px">{$teacher.id}</td>
+                                            <td align="center" style="line-height: 60px">{$teacher.name}</td>
+                                            <td align="center" ><img src="/images/{$teacher.image}" width="60"
+                                                                     height="50"/></td>
+                                            <td align="center" style="line-height: 60px">{$teacher.create_time}</td>
+                                            <td align="center" style="line-height: 60px">
+                                                <a href="{:url('teacher/Edit',['id'=>$teacher.id])}"
+                                                   class="btn btn-primary btn-sm shiny">
+                                                    <i class="glyphicon glyphicon-edit"></i> 编辑
+                                                </a>
+                                                <a href="" onclick="dele({$teacher.id}); return false;"
+                                                   class="btn btn-danger btn-sm shiny">
+                                                    <i class="glyphicon glyphicon-minus-sign"></i> 删除
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        {/volist}
+                                        </tbody>
+                                    </table>
+                                    <div class="text-center">{$teacherList|raw}</div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    function dele(id) {
+        if (confirm('您确定要删除吗？') == true) {
+            window.location.href = "{:url('teacher/Delete')}" + "?id=" + id;
+        }
+    }
+    function createFunction() {
+        window.location.href = "{:url('teacher/Add')}";
+    }
+    function checkfk() {
+        var allcheck = document.getElementById("checkall");  //获取 全选check 的id
+        var othercheck = document.getElementsByName("id[]"); //获取数组名称为fkcheck的 复选框
+        for (var i = 0; i < othercheck.length; i++) {
+            if (allcheck.checked) {
+                othercheck[i].checked = true;
+            } else {
+                othercheck[i].checked = false;
+            }
+        }
+    }
+</script>

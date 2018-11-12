@@ -1,0 +1,104 @@
+{layout name="public:layout" /}
+
+<div class="page-content">
+    <!-- Page Breadcrumb -->
+    <div class="page-breadcrumbs">
+        <ul class="breadcrumb">
+            <li>
+                <a href="{:url('site/index')}" style="color: #33414E;text-decoration: none">系统</a>
+            </li>
+            <li>
+                <a href="{:url('teacher/teacherlist')}" style="color: #33414E;text-decoration: none">教师简介管理</a>
+            </li>
+            <li class="active">编辑</li>
+        </ul>
+    </div>
+    <!-- /Page Breadcrumb -->
+    <!-- Page Body -->
+    <div class="page-body">
+        <div class="row" style="background-color: white;margin:-10px 5px 0px 5px;box-shadow: 3px 3px 2px #888888;">
+            <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
+                <div class="flip-scroll container">
+                    <div class="row" style="margin-top: 20px;">
+                        <h4 class="text-right text-success">编辑</h4>
+                        <hr style="height:1px;border:none;border-top:1px solid #555555;"/>
+                    </div>
+                    <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3"></div>
+                    <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6">
+                        <form class="form-horizontal" action="{:url('teacher/save')}" method="post"
+                              enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">教师姓名</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="name" value="{$teacherInfo.name}" id="name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">教师介绍</label>
+                                <div class="col-sm-10">
+                                    <textarea name="introduce" class="form-control" style="height: 150px;" id="introduce">{$teacherInfo.introduce}</textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">教师建议</label>
+                                <div class="col-sm-10">
+                                    <textarea name="advise" class="form-control" style="height: 150px;" id="advise">{$teacherInfo.advise}</textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">图片</label>
+                                <div class="col-sm-10">
+                                    <img src="/images/{$teacherInfo.image}" width="80" height="60"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">图片路径</label>
+                                <div class="col-sm-10">
+                                    <input type="file" name="image" class="form-control" id="image" placeholder="图片路径">
+                                    <p>（仅允许添加后缀名为jpg,jpeg,png的文件）</p>
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="id" value="{$teacherInfo.id}">
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-info" onclick="Check()"><i
+                                            class="glyphicon glyphicon-ok"></i>保存
+                                    </button>
+                                    <a href="{:url('teacher/teacherlist')}"
+                                       class="btn btn-danger btn-sm shiny">
+                                        <i class="glyphicon glyphicon-remove"></i> 取消
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function Check() {
+        if (document.getElementById("name").value == "") {
+            alert('教师姓名不能为空!');
+            return false;
+        }
+        if (document.getElementById("introduce").value == "") {
+            alert('教师介绍不能为空!');
+            return false;
+        }
+        if (document.getElementById("advise").value == "") {
+            alert('教师建议不能为空!');
+            return false;
+        }
+        if (document.getElementById("image").value == "") {
+            alert('图片路径不能为空!');
+            return false;
+        }
+
+        return true;
+    }
+
+</script>

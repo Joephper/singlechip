@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新闻资讯</title>
+    <!-- Bootstrap Core CSS -->
+    {load href="/static/css/bootstrap.css" /}
+
+    <!-- Custom CSS -->
+    {load href="/mine/css/font-awesome.min.css" /}
+    {load href="/mine/css/ionicons.min.css" /}
+    {load href="/mine/css/main.css" /}
+    {load href="/mine/css/style.css" /}
+    {load href="/mine/css/responsive.css" /}
+
+    <!-- JavaScripts -->
+    {load href="/mine/js/modernizr.js" /}
+    {load href="/static/js/jquery-3.3.1.min.js" /}
+    {load href="/static/js/bootstrap.js" /}
+    <!-- Online Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Dosis|Libre+Baskerville|Open+Sans" rel="stylesheet">
+</head>
+<body>
+<!-- Wrap -->
+<div id="wrap">
+
+    {include file="public::nav" /}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8" style="height: 700px;">
+                <div>{$news.title}</div>
+                <div>{$news.create_time} &nbsp;&nbsp;&nbsp;&nbsp;阅读量： {$news.pv}</div>
+                <div>{:htmlspecialchars_decode($news.content) }</div>
+            </div>
+            <div class="col-md-4" style="background-color: #9d9d9d;height: 700px;">2</div>
+        </div>
+    </div>
+    {include file="public::footer" /}
+
+</div>
+{load href="/mine/js/own-menu.js" /}
+{load href="/mine/js/main.js" /}
+</body>
+</html>

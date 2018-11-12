@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{$title|default="页面标题"}</title>
+    {load href="/static/css/bootstrap.css" /}
+    {load href="/static/js/bootstrap.js" /}
+    {load href="/static/css/flow.css" /}
+    {load href="/static/js/jquery-3.3.1.min.js" /}
+    {load href="/static/js/button.js" /}
+    <style>
+        body {
+            background-image: url("/static/image/bg.png");
+            background-size: 100% 100%;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+
+        .main_box {
+            background-image: url("/static/image/yuanjiao.png");
+            background-size: 100% 100%;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -260px;
+            margin-left: -300px;
+            padding: 30px;
+            width: 600px;
+            height: 460px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 main_box">
+            <div class="page-header text-center">
+                <h3>管理员登录</h3>
+            </div>
+            <form class="form-horizontal" method="post" id="login" action="{:url('user/checkLogin')}">
+                <div class="form-group">
+                    <label for="email" class="col-sm-2 control-label">邮箱</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="email" class="form-control" id="email" placeholder="请输入您的邮箱">
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-sm-2 control-label">密码</label>
+                    <div class="col-sm-9">
+                        <input type="password" name="password" class="form-control" id="password"
+                               placeholder="请输入密码">
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-sm-2 control-label">验证码</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="verify" placeholder="请输入验证码" class="form-control">
+                    </div>
+                    <div class="col-sm-3">
+                        <img id="verify_img" src="{:url('user/verify')}" alt="验证码" onclick="Verify()" title="点击刷新"/>
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+                <script>
+                    function Verify() {
+                        var ts = Date.parse(new Date()) / 1000;
+                        var img = document.getElementById('verify_img');
+                        img.src = "/captcha?id=" + ts;
+                    }
+                </script>
+
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-4">
+                        <button type="submit" class="btn btn-primary btn-block" id="submit" style="width: 100px;">登录
+                        </button>
+                    </div>
+                    <div class="col-sm-offset-2 col-sm-4">
+                        <a id="content" class="text-left" href="#" style="color: black;font-size: 18px;">找回密码</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-4">
+
+        </div>
+    </div>
+</div>
+<div id="alert" class="">
+    <div class="model-head">
+        <a href="{:url('user/login')}"><span class="close">&times;</span></a>
+        <h4 class="modal-title">找回密码</h4>
+    </div>
+    <div class="model-content">
+        <div class="main">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="flow">
+                        <div class="flowListBox"></div>
+                    </div>
+                </div>
+                <div class="col-md-12" id="flowDiv">
+                    <ol id="iList">
+                        <div id="contA">
+                            <form class="form-horizontal" method="post" id="checkEmail">
+                                <div class="form-group">
+                                    <label for="c_email" class="col-sm-2 control-label">电子邮箱</label>
+                                    <div class="col-sm-5">
+                                        <input type="text" name="email" id="c_email" class="form-control"
+                                               placeholder="请输入邮箱地址">
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <label class="control-label">请输入您注册的账号</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" class="col-sm-2 control-label">验证码</label>
+                                    <div class="col-sm-2">
+                                        <input type="text" name="verify" class="form-control" placeholder="验证码"
+                                               id="verify">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <img id="ver_img" src="{:url('user/verify')}" alt="验证码"
+                                             onclick="refreshVerify()" title="点击刷新"/>
+                                    </div>
+                                </div>
+                                <script>
+                                    function refreshVerify() {
+                                        var ts = Date.parse(new Date()) / 1000;
+                                        var img = document.getElementById('ver_img');
+                                        img.src = "/captcha?id=" + ts;
+                                    }
+                                </script>
+
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <button type="button" class="btn btn-success" id="send">提交</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="contentList" id="contB">
+                            <div class="row">
+                                <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6">
+                                    <form class="form-horizontal" method="post" id="checkCode">
+                                        <div class="form-group">
+                                            <label for="code" class="col-sm-4 control-label">验证码</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" name="code" class="form-control" id="code"
+                                                       placeholder="请输入验证码">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-4 col-sm-8">
+                                                <button type="button" class="btn btn-success" id="confirm">提交</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6">
+                                    <form class="form-horizontal" method="post" id="sendcode">
+                                        <button id="getCode" class="btn btn-warning" type="button" data-loading-text="发送中..." autocomplete="off">获取验证码</button>
+                                        <button id="timedown" class="btn btn-warning" type="button" style="display:none;"></button>
+                                    </form>
+
+                                    <script type="text/javascript">
+                                        $("#getCode").on("click",function(){
+                                            var $btn = $(this).button('loading');
+                                            // business logic...
+                                            $btn.button('reset');
+                                            var time = 60;
+                                            timedown(time);
+                                            //倒计时
+                                            function timedown(time)
+                                            {
+                                                if(time=='undefined')
+                                                    time = 60;
+                                                time = time-1;
+                                                if(time>=0)
+                                                {
+                                                    setTimeout(function(){
+                                                        timedown(time)
+                                                    },1000)
+                                                    $("#timedown").html(time+"秒后重新发送");
+                                                    $("#timedown").addClass('disabled');
+                                                    $("#timedown").show();
+                                                    $("#getCode").hide();
+                                                }else{
+                                                    //倒计时结束
+                                                    $("#getCode").html("获取验证码");
+                                                    $("#getCode").show();
+                                                    $("#timedown").hide();
+                                                }
+                                            }
+                                        });
+                                    </script>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contentList" id="contC">
+                            <form class="form-horizontal" method="post" id="resetPSW">
+                                <div class="form-group">
+                                    <label for="newpassword" class="col-sm-3 control-label">新密码</label>
+                                    <div class="col-sm-6">
+                                        <input type="password" name="password" class="form-control" id="newpassword"
+                                               placeholder="请输入新密码">
+                                    </div>
+                                    <div class="col-sm-3"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password_confirm" class="col-sm-3 control-label">确认密码</label>
+                                    <div class="col-sm-6">
+                                        <input type="password" name="password_confirm" class="form-control"
+                                               id="password_confirm"
+                                               placeholder="请确认密码">
+                                    </div>
+                                    <div class="col-sm-3"></div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-3 col-sm-9">
+                                        <button type="button" class="btn btn-success" id="add">提交</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="contentList" id="contD">
+                            <div class="successs">
+                                <h3>恭喜您，修改成功！</h3>
+                            </div>
+
+                        </div>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="foot-btn">
+        <button type="button" class="btn btn-primary" id="btnBack">上一步</button>
+        <a href="{:url('user/login')}" style="float:right; display:none" id="btnok"
+           class="btn btn-default btn-sm shiny">
+            <span class="close">完成</span>
+        </a>
+        <button type="button" class="btn btn-success" style="float:right; margin-right:10px;" id="btnNext">下一步</button>
+    </div>
+</div>
+<div id="mask"></div>
+
+
+<script type="text/javascript">
+    var myAlert = document.getElementById("alert");
+    var myMask = document.getElementById('mask');
+
+    $("#content").click(function () {
+        myMask.style.display = "block";
+        myAlert.style.display = "block";
+        document.body.style.overflow = "hidden";
+    })
+    $(".close").click(function () {
+        myAlert.style.display = "none";
+        myMask.style.display = "none";
+    })
+    //check the E-mail
+    $(function () {
+        $("#send").on('click', function () {
+            $.ajax({
+                type: 'post',
+                url: "{:url('admin/user/checkEmail')}",
+                data: $('#checkEmail').serialize(),
+                dataType: 'json',
+                async: true,
+                success: function (data) {
+                    switch (data.status) {
+                        case 1:
+                            $("#btnNext").removeClass("disabled");
+                            break;
+                        case 0:
+                            alert(data.message);
+                            $(function () {
+                                $('#c_email').focus().select();
+                                if (document.all) {
+                                    document.getElementById("ver_img").click();
+                                }// 其它浏览器
+                                else {
+                                    var e = document.createEvent("MouseEvents");
+                                    e.initEvent("click", true, true);
+                                    document.getElementById("ver_img").dispatchEvent(e);
+                                }
+                            });
+                            break;
+                        case -1:
+                            alert(data.message);
+                            $(function () {
+                                if (document.all) {
+                                    document.getElementById("ver_img").click();
+                                }// 其它浏览器
+                                else {
+                                    var e = document.createEvent("MouseEvents");
+                                    e.initEvent("click", true, true);
+                                    document.getElementById("ver_img").dispatchEvent(e);
+                                }
+                            });
+                            break;
+                        case -2:
+                            alert(data.message);
+                            $(function () {
+                                $('#verify').focus().select();
+                                if (document.all) {
+                                    document.getElementById("ver_img").click();
+                                }// 其它浏览器
+                                else {
+                                    var e = document.createEvent("MouseEvents");
+                                    e.initEvent("click", true, true);
+                                    document.getElementById("ver_img").dispatchEvent(e);
+                                }
+                            });
+                            break;
+                    }
+                }
+            })
+
+        })
+    })
+    //send the code
+    $(function () {
+        $("#getCode").on('click', function () {
+            $.ajax({
+                type: 'post',
+                url: "{:url('admin/user/sendCode')}",
+                data: $('#sendcode').serialize(),
+                dataType: 'json',
+                async: true,
+                success: function (data) {
+                    switch (data.status) {
+                        case 1:
+                            break;
+                        case 0:
+                            break;
+                    }
+                }
+            })
+        })
+    })
+    //check the code
+    $(function () {
+        $("#confirm").on('click', function () {
+            $.ajax({
+                type: 'post',
+                url: "{:url('admin/user/checkCode')}",
+                data: $('#checkCode').serialize(),
+                dataType: 'json',
+                async: true,
+                success: function (data) {
+                    switch (data.status) {
+                        case 1:
+                            $("#btnNext").removeClass("disabled");
+                            break;
+                        case 0:
+                            alert(data.message);
+                            break;
+                        case -1:
+                            alert(data.message);
+                            break;
+                    }
+                }
+            })
+        })
+    })
+    //reset password
+    $(function () {
+        $("#add").on('click', function () {
+            $.ajax({
+                type: 'post',
+                url: "{:url('admin/user/resetPSW')}",
+                data: $('#resetPSW').serialize(),
+                dataType: 'json',
+                async: true,
+                success: function (data) {
+                    switch (data.status) {
+                        case 1:
+                            $("#btnNext").removeClass("disabled");
+                            break;
+                        case 0:
+                            alert(data.message);
+                            break;
+                        case -1:
+                            alert(data.message);
+                            break;
+                    }
+                }
+            })
+        })
+    })
+</script>
+{load href="/static/js/flow.js" /}
+</body>
+</html>

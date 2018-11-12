@@ -1,0 +1,71 @@
+{layout name="public:layout" /}
+
+<div class="page-content">
+    <!-- Page Breadcrumb -->
+    <div class="page-breadcrumbs">
+        <ul class="breadcrumb">
+            <li>
+                <a href="{:url('site/index')}" style="color: #33414E;text-decoration: none">系统</a>
+            </li>
+            <li class="active">学习教程管理</li>
+            <li>
+                <a href="{:url('textbook/textlist')}" style="color: #33414E;text-decoration: none">电子教材管理</a>
+            </li>
+            <li class="active">添加电子教材</li>
+        </ul>
+    </div>
+    <!-- /Page Breadcrumb -->
+    <!-- Page Body -->
+    <div class="page-body">
+        <div class="row" style="background-color: white;margin:-10px 5px 0px 5px;box-shadow: 3px 3px 2px #888888;">
+            <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
+                <div class="flip-scroll container">
+                    <div class="row" style="margin-top: 20px;">
+                        <h4 class="text-right text-success">添加电子教材</h4>
+                        <hr style="height:1px;border:none;border-top:1px solid #555555;"/>
+                    </div>
+                    <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3"></div>
+                    <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6">
+                        <form method="post" id="login" action="{:url('admin/Textbook/insert')}"
+                              enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="title" class="control-label">教材标题</label>
+                                <input type="text" name="title" class="form-control" id="title" placeholder="教材标题">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">章节名称</label>
+                                <select name="cid" id="" class="form-control">
+                                    {volist name="CateList" id="cate"}
+                                    <option value="{$cate.id}"><?php echo str_repeat('---',$cate['level']) ?>{$cate.name}</option>
+                                    {/volist}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="path" class="control-label">pdf文件</label>
+                                <input type="file" name="path" class="form-control" id="path" placeholder="pdf文件路径">
+                                <p>（仅允许添加pdf文件）</p>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary" id="submit" onclick="Check()">发布</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function Check() {
+        if (document.getElementById("title").value == "") {
+            alert('教材标题不能为空!');
+            return false;
+        }
+        if (document.getElementById("path").value == "") {
+            alert('文件路径不能为空!');
+            return false;
+        }
+        return true;
+    }
+
+</script>

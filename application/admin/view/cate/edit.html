@@ -1,0 +1,68 @@
+{layout name="public:layout" /}
+
+<div class="page-content">
+    <!-- Page Breadcrumb -->
+    <div class="page-breadcrumbs">
+        <ul class="breadcrumb">
+            <li>
+                <a href="{:url('site/index')}" style="color: #33414E;text-decoration: none">系统</a>
+            </li>
+            <li>
+                <a href="{:url('cate/lst')}" style="color: #33414E;text-decoration: none">章节管理</a>
+            </li>
+            <li class="active">编辑章节</li>
+        </ul>
+    </div>
+    <!-- /Page Breadcrumb -->
+    <!-- Page Body -->
+    <div class="page-body">
+        <div class="row" style="background-color: white;margin:-10px 5px 0px 5px;box-shadow: 3px 3px 2px #888888;">
+            <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
+                <div class="flip-scroll container">
+                    <div class="row" style="margin-top: 20px;">
+                        <h4 class="text-right text-success">编辑章节</h4>
+                        <hr style="height:1px;border:none;border-top:1px solid #555555;"/>
+                    </div>
+                    <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3"></div>
+                    <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6">
+                        <form class="form-horizontal" role="form" action="{:url('cate/edit')}" method="post">
+                            <!-- 隐藏域 -->
+                            <input type="text" hidden="hidden" name="id" value="{$data.id}">
+                            <div class="form-group">
+                                <label for="pid" class="control-label no-padding-right">上级章节</label>
+                                <select class="form-control" id="pid" placeholder="" name="pid" required="">
+                                    <option value="0">顶级章节</option>
+                                    {volist name='list' id='list'}
+
+                                    <option value='{$list.id}'
+                                            {if $list.id == $data.pid }
+                                            selected='selected' {/if}>
+                                    <?php echo str_repeat('---',$list['level']) ?>{$list.name}</option>
+
+                                    {/volist}
+                                </select>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="name" class="control-label no-padding-right">章节名称</label>
+                                <input class="form-control" id="name" placeholder="{$data['name']}" name="name"
+                                       required="" type="text" value="{$data['name']}">
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-ok"></i>保存
+                                </button>
+                                <a href="{:url('cate/lst')}"
+                                   class="btn btn-danger btn-sm shiny">
+                                    <i class="glyphicon glyphicon-remove"></i> 取消
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

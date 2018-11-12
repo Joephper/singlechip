@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>教学视频</title>
+
+    <!-- Bootstrap Core CSS -->
+    {load href="/static/css/bootstrap.css" /}
+
+    <!-- Custom CSS -->
+    {load href="/mine/css/font-awesome.min.css" /}
+    {load href="/mine/css/ionicons.min.css" /}
+    {load href="/mine/css/main.css" /}
+    {load href="/mine/css/style.css" /}
+    {load href="/mine/css/responsive.css" /}
+    {load href="/static/css/video-js.min.css" /}
+
+    <!-- JavaScripts -->
+    {load href="/mine/js/modernizr.js" /}
+    {load href="/static/js/jquery-3.3.1.min.js" /}
+    {load href="/static/js/bootstrap.js" /}
+    <!-- Online Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Dosis|Libre+Baskerville|Open+Sans" rel="stylesheet">
+</head>
+<body>
+<!-- Wrap -->
+<div id="wrap">
+
+    {include file="public::nav" /}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                {volist name="CateList" id="cate"}
+                <ul type="width:100px;">
+                    <li><a href="{:url('Learn/video',['id'=>$cate.id])}">{$cate.name}</a></li>
+
+                </ul>
+                {/volist}
+            </div>
+            <div class="col-md-9">
+                {volist name="video" id="video"}
+                <video id="my-video" class="video-js" controls="controls" preload="auto" width="600" height="400"
+                       poster="/images/{$video.image}" data-setup="{}">
+                    <source src="/videos/{$video.path}">
+                </video>
+                {/volist}
+                {load href="/static/js/video.min.js" /}
+                {load href="/static/js/zh-CN.js" /}
+                <script type="text/javascript">
+                    var myPlayer = videojs('my-video');
+                    videojs("my-video").ready(function () {
+                        var myPlayer = this;
+                        myPlayer.play();
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+    {include file="public::footer" /}
+</div>
+{load href="/mine/js/own-menu.js" /}
+{load href="/mine/js/main.js" /}
+</body>
+</html>

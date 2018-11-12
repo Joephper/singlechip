@@ -1,0 +1,83 @@
+<!-- Top Bar -->
+<div class="top-bar">
+    <div class="container">
+
+        <!-- Social Icons -->
+        <div class="social">
+            <a href="" alt="老师QQ" data-toggle="tooltip" data-placement="bottom" data-html="true"
+               title="扫一扫加QQ好友<img src='http://localhost:8080/dashboard/EMS_correct/public/static/image/qq.png'/>"><i class="fa fa-qq"></i></a>
+            <a href="" alt="老师微信" data-toggle="tooltip" data-placement="bottom" data-html="true"
+               title="<div class='tip'>扫一扫加微信好友<img src='http://localhost:8080/dashboard/EMS_correct/public/static/image/wechat.png'/></div>">
+                <i class="fa fa-wechat"></i>
+            </a>
+            <a href=""alt="老师邮箱" data-toggle="tooltip" data-placement="bottom" data-html="true"
+               title="<div class='tip'>教师邮箱地址<div class='text-center'>1214586475@qq.com</div></div>"><i class="fa fa-envelope"></i></a>
+
+            <script>
+                $(function () {
+                    $("[data-toggle='tooltip']").tooltip({delay: {show: 0, hide: 500}});
+                });
+            </script>
+        </div>
+
+
+        <div class="login-info">
+            {if $Think.session.user_id && $Think.session.active==1}
+            <li>
+                <a href="#">{$Think.session.user_name}</a></li>
+            <div class="login-content">
+                <ul>
+                    <li><a href="#"><span class="glyphicon glyphicon-user">&nbsp;个人中心</span></a>
+                    </li>
+                    <li role="separator" class="divider"></li>
+                    {if $Think.session.user_role == 2}
+                    <li><a href="{:url('/admin')}"><span
+                            class="glyphicon glyphicon-cog">&nbsp;管理中心</span></a>
+                    </li>
+                    <li role="separator" class="divider"></li>
+                    {/if}
+                    <li><a href="{:url('User/logout')}"><span class="glyphicon glyphicon-log-out">&nbsp;注销用户</span></a>
+                    </li>
+                </ul>
+
+
+            </div>
+            {else/}
+            <li><a href="{:url('User/login')}"><i class="fa fa-user"></i>&nbsp;登录/注册</span></a></li>
+            {/if}
+        </div>
+
+
+    </div>
+</div>
+
+<!-- header -->
+<header>
+    <div class="sticky">
+        <div class="container">
+
+            <!-- Logo -->
+            <a href="{:url('index/index')}"><img class="image"
+                                                 src="http://localhost:8080/dashboard/EMS_correct/public/static/image/logo.png"
+                                                 alt=""/></a>
+            <!-- Navigation -->
+            <nav class="navbar">
+                <!-- NAV -->
+                <ul class="nav ownmenu">
+                    <li class="active"><a href="{:url('index/index')}"> 首页 </a></li>
+                    <li><a href="#"> 教师简介 </a></li>
+                    <li><a href="#.">新闻资讯</a></li>
+                    <li><a href="#.">公告通知</a></li>
+                    <li><a href="#.">学习教程</a>
+                        <ul class="dropdown">
+                            <li><a href="{:url('Learn/video')}"> 教学视频 </a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="{:url('Learn/textbook')}"> 电子教材 </a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{:url('Source/download')}">资源下载</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>

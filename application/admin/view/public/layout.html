@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{$title|default="页面标题"}</title>
+    {load href="/static/css/bootstrap.css" /}
+    {load href="/static/css/admin.css" /}
+    {load href="/static/js/jquery-3.3.1.min.js" /}
+    {load href="/static/js/bootstrap.js" /}
+    {load href="/static/js/admin.js" /}
+    {load href="/Ueditor/ueditor.config.js" /}
+    {load href="/Ueditor/ueditor.all.min.js" /}
+    {load href="/Ueditor/lang/zh-cn/zh-cn.js" /}
+    {load href="/static/js/distpicker.data.min.js" /}
+    {load href="/static/js/distpicker.min.js" /}
+
+</head>
+
+<body>
+
+<div class="row">
+    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2" style=" background-color: #33414E;">
+            <h3 class="text-center" style="color: #ff9a11">单片机教学网后台</h3>
+        </div>
+        <div class="col-md-10 col-lg-10 col-sm-10 col-xs-10" style="background-color: #33414E">
+            {include file="public:nav"/}
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2"
+             style="background-color: #33414E;height: 0;padding-bottom: 50%">
+            {include file="public:left" /}
+        </div>
+        <div class="col-md-10 col-lg-10 col-sm-10 col-xs-10"
+             style="background-color: #F0F0F0;height: 0;padding-bottom: 50%">
+            {__CONTENT__}
+        </div>
+    </div>
+</div>
+</body>
+</html>

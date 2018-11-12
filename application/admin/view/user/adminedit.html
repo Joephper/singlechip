@@ -1,0 +1,209 @@
+{layout name="public:layout" /}
+
+<div class="page-content">
+    <!-- Page Breadcrumb -->
+    <div class="page-breadcrumbs">
+        <ul class="breadcrumb">
+            <li>
+                <a href="{:url('site/index')}" style="color: #33414E;text-decoration: none">系统</a>
+            </li>
+            <li class="active">个人中心</li>
+        </ul>
+    </div>
+    <!-- /Page Breadcrumb -->
+    <!-- Page Body -->
+    <div class="page-body">
+        <div class="row" style="background-color: white;margin:-10px 5px 0px 5px;box-shadow: 3px 3px 2px #888888;">
+            <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
+                <div class="flip-scroll container">
+
+                    <form class="form-horizontal" action="{:url('user/saveUser')}" method="post">
+                        <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6">
+                            <div class="row" style="margin-top: 20px;">
+                                <h4 class="text-left text-success">完善个人信息</h4>
+                            </div>
+                            <hr style="height:1px;border:none;border-top:1px solid #555555;"/>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">用户名</label>
+                                <div class="col-sm-10">
+                                    <p class="form-control-edit">{$userInfo.name}</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">邮箱</label>
+                                <div class="col-sm-10">
+                                    <p class="form-control-edit">{$userInfo.email}</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">真实姓名</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="realname"
+                                           value="{$userInfo.realname}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">手机号</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="mobile" value="{$userInfo.mobile}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">角色</label>
+                                <div class="col-sm-10">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="sex" value="1"
+                                               {eq name="userInfo.sex" value="1" }
+                                               checked="checked"
+                                               {/eq}
+                                        >男
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="sex" value="0"
+                                               {eq name="userInfo.sex" value="0" }
+                                               checked="checked"
+                                               {/eq}
+                                        >女
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">出生日期</label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="birthday" class="form-control" name="birthday"
+                                           value="{$userInfo.birthday}">
+                                    {load href="/laydate/laydate.js" /}
+                                    <script>
+                                        //执行一个laydate实例
+                                        laydate.render({
+                                            elem: '#birthday' //指定元素
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">地址</label>
+                                <div class="col-sm-10">
+                                    <form class="form-inline">
+                                        <div data-toggle="distpicker" class="row">
+                                            <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
+                                                <div class="col-lg-4 col-sm-4 col-xs-4 col-md-4">
+                                                    <select id="province" class="form-control"
+                                                            data-province="{$userInfo.province}"
+                                                            name="province"></select>
+                                                </div>
+                                                <div class="col-lg-4 col-sm-4 col-xs-4 col-md-4">
+                                                    <select id="city" class="form-control" data-city="{$userInfo.city}"
+                                                            name="city"></select>
+                                                </div>
+                                                <div class="col-lg-4 col-sm-4 col-xs-4 col-md-4">
+                                                    <select id="district" class="form-control"
+                                                            data-district="{$userInfo.district}"
+                                                            name="district"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <input type="hidden" name="id" value="{$userInfo.id}">
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-info"><i class="glyphicon glyphicon-ok"></i>保存
+                                    </button>
+                                    <a href="{:url('conf/index')}"
+                                       class="btn btn-danger btn-sm shiny">
+                                        <i class="glyphicon glyphicon-remove"></i> 取消
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2">
+                            <hr style="width:2px;border-left:1px dashed #555555; height: 500px;"/>
+                        </div>
+                        <div class="col-lg-4 col-sm-4 col-xs-4 col-md-4">
+                            <div class="row" style="margin-top: 20px;">
+                                <h4 class="text-right">个人中心</h4>
+                            </div>
+                            <hr style="height:1px;border:none;border-top:1px solid #555555;"/>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">座右铭</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="motto"
+                                           value="{$userInfo.motto}">
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+
+                    <form class="form-horizontal" action="{:url('user/editPassword')}" method="post" id="editpassword">
+                        <!--<div class="row" style="margin-top: 20px;">-->
+                        <div class="col-lg-4 col-sm-4 col-xs-4 col-md-4" style="margin-top: 50px;">
+                            <h4 class="text-right">修改密码</h4>
+                            <hr style="height:1px;border:none;border-top:1px solid #555555;"/>
+
+                            </div>
+                        <!--</div>-->
+
+                        <div class="col-lg-4 col-sm-4 col-xs-4 col-md-4">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">旧密码</label>
+                                <div class="col-sm-9">
+                                    <input type="password" name="oldpassword" class="form-control"
+                                           placeholder="请输入旧密码">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="col-sm-3 control-label">新密码</label>
+                                <div class="col-sm-9">
+                                    <input type="password" name="password" class="form-control" id="password"
+                                           placeholder="请输入新密码">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password_confirm" class="col-sm-3 control-label">确认密码</label>
+                                <div class="col-sm-9">
+                                    <input type="password" name="password_confirm" class="form-control"
+                                           id="password_confirm"
+                                           placeholder="请确认密码">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-3 col-sm-9">
+                                    <button type="button" class="btn btn-primary" id="edit">确认</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $("#edit").on('click', function () {
+//                        alert($('#login').serialize());
+            $.ajax({
+                type: 'post',
+                url: "{:url('admin/user/editPassword')}",
+                data: $('#editpassword').serialize(),
+                dataType: 'json',
+                success: function (data) {
+                    switch (data.status) {
+                        case 1:
+                            alert(data.message);
+                            window.location.href = "{:url('user/adminedit')}";
+                            break;
+                        case 0:
+                        case -1:
+                            alert(data.message);
+                            break;
+                    }
+                }
+            })
+        })
+
+    })
+</script>

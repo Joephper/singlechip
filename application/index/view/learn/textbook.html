@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>电子教材</title>
+    <!-- Bootstrap Core CSS -->
+    {load href="/static/css/bootstrap.css" /}
+
+    <!-- Custom CSS -->
+    {load href="/mine/css/font-awesome.min.css" /}
+    {load href="/mine/css/ionicons.min.css" /}
+    {load href="/mine/css/main.css" /}
+    {load href="/mine/css/style.css" /}
+
+
+    <!-- JavaScripts -->
+    {load href="/mine/js/modernizr.js" /}
+    {load href="/static/js/jquery-3.3.1.min.js" /}
+    {load href="/static/js/bootstrap.js" /}
+    <!-- Online Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Dosis|Libre+Baskerville|Open+Sans" rel="stylesheet">
+</head>
+<body>
+<!-- Wrap -->
+<div id="wrap">
+
+    {include file="public::nav" /}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                {volist name="CateList" id="cate"}
+                <ul type="width:100px;">
+                    <li><a href="{:url('Learn/textbook',['id'=>$cate.id])}">{$cate.name}</a></li>
+                </ul>
+                {/volist}
+            </div>
+            <div class="col-md-9" style="height: 700px;">
+                {volist name="text" id="text"}
+                <div style="margin-top: 10px;display: block;height: 700px">
+                    <iframe src="http://localhost:8080/dashboard/EMS_correct/public/build/generic/web/viewer.html?file=../../../pdf/{$text.path}"
+                            width="100%" height="100%" style="border: none;">
+                    </iframe>
+                </div>
+                {/volist}
+            </div>
+
+
+        </div>
+    </div>
+    {include file="public::footer" /}
+</div>
+{load href="/mine/js/own-menu.js" /}
+</body>
+</html>
